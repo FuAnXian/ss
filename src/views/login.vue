@@ -1,7 +1,11 @@
 <template>
   <div class="el-container login">
     <div class="login-div">
-      <div class="left login-item"></div>
+      <div class="left login-item">
+        <div style="width:65%;">
+          <img style="width:100%;vertical-align: middle;" src="../assets/img/logo.png" alt="">
+        </div>
+      </div>
       <div class="right login-item">
         <div>
           <input type="text" class="customer-input" placeholder="账号"/>
@@ -10,10 +14,11 @@
           <input type="password" class="customer-input" placeholder="密码"/>
         </div>
         <el-row >
-           <el-button style="width:100%" type="primary" size="small">主要按钮</el-button>
+           <el-button class="btn" style="width:100%" type="primary" size="small">主要按钮</el-button>
         </el-row>
       </div>
     </div>
+    
   </div>
 </template>
 
@@ -57,9 +62,22 @@ export default {
   border-radius: 10px;
   box-shadow: 5px 0px 10px #2a2a2a;
 }
+.btn{
+  border: solid 1px #1ca578 ;
+  background-color: #22c691;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+.btn:hover{
+  border: solid 1px #1ca578 ;
+  background-color: #1fa87d;
+}
 .left {
   background-color: #bfe5d8;
   overflow: hidden;
+  display:flex;
+  align-items:center;
+justify-content:center;
 }
 .left::before {
   content: "";
@@ -83,10 +101,37 @@ export default {
 .right {
   background-color: #fff;
   box-sizing: border-box;
-  padding: 50px 50px;
+  padding: 100px 50px;
+  z-index: 99;
 }
 .right div{
   margin-bottom: 20px;;
+}
+.right::after{
+   content:"";
+  position:absolute;
+  right:-60px;
+  top:10%;
+  width: 60px;
+  height:20px;
+   z-index:1;
+  background-color:#fff;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 1px 0px 3px #3a3a3a;
+}
+.right::before{
+  content:"";
+  position:absolute;
+  z-index:1;
+  right:-75px;
+  top:20%;
+  width: 75px;
+  height:20px;
+  background-color:#fff;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+   box-shadow: 2px 0px 5px #3b3b3b;
 }
 .customer-input {
   display: block;
@@ -94,7 +139,33 @@ export default {
   width: 100%;
   padding:8px 0;
   border: none;
+  font-size: 0.9rem;
+  color: #53c8ab;
   border-bottom: 1px solid rgb(153, 153, 153);
   outline: none;
+}
+.login-div::after{
+  content:"";
+  position:absolute;
+  left:-50px;
+  top:40%;
+  width: 50px;
+  height:20px;
+  background-color:#c9f3e7;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: -1px 0px 3px #3a3a3a;
+}
+.login-div::before{
+  content:"";
+  position:absolute;
+  left:-70px;
+  top:50%;
+  width: 70px;
+  height:20px;
+  background-color:#c9f3e7;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+   box-shadow: 1px 0px 5px #3b3b3b;
 }
 </style>
