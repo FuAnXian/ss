@@ -1,38 +1,58 @@
 <template>
-  <div class="el-container login">
+  <div class="el-container login" ref="div">
     <div class="login-div">
       <div class="left login-item">
         <div style="width:65%;">
-          <img style="width:100%;vertical-align: middle;" src="../assets/img/logo.png" alt="">
+          <img style="width:100%;vertical-align: middle;" src="../assets/img/logo.png" alt />
         </div>
       </div>
       <div class="right login-item">
         <div>
-          <input type="text" class="customer-input" placeholder="账号"/>
+          <input type="text" class="customer-input" v-model="name" placeholder="账号" />
         </div>
         <div>
-          <input type="password" class="customer-input" placeholder="密码"/>
+          <input type="password" class="customer-input" v-model="password" placeholder="密码" />
         </div>
-        <el-row >
-           <el-button class="btn" style="width:100%" type="primary" size="small">主要按钮</el-button>
+        <el-row>
+          <el-button class="btn" @click="login" style="width:100%" type="primary" size="small">登 录</el-button>
         </el-row>
       </div>
     </div>
-    
   </div>
 </template>
 
 <script>
+import {login} from "../network/login.js"
 export default {
   name: "login",
   data() {
     return {
-      formData: {
-        sizeForm: {
-          name: "",
-        },
-      },
+        name: "",
+        password: "",
     };
+  },
+  methods: {
+    login() {
+      if (this.name === "") {
+        this.$message({
+          type: "warning",
+          message: "想啥呢?名字都没有吗",
+        });
+      } else if (this.password === "") {
+        this.$message({
+          type: "warning",
+          message: "密码都不输入,你是要飞啊！",
+        });
+      } else {
+        console.log(login)
+            login({
+              username:this.name,
+              password:this.password  
+            }).then((res)=>{
+              console.log(res)
+            })
+      }
+    },
   },
 };
 </script>
@@ -62,22 +82,22 @@ export default {
   border-radius: 10px;
   box-shadow: 5px 0px 10px #2a2a2a;
 }
-.btn{
-  border: solid 1px #1ca578 ;
+.btn {
+  border: solid 1px #1ca578;
   background-color: #22c691;
   border-radius: 10px;
   margin-top: 20px;
 }
-.btn:hover{
-  border: solid 1px #1ca578 ;
+.btn:hover {
+  border: solid 1px #1ca578;
   background-color: #1fa87d;
 }
 .left {
   background-color: #bfe5d8;
   overflow: hidden;
-  display:flex;
-  align-items:center;
-justify-content:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .left::before {
   content: "";
@@ -104,68 +124,68 @@ justify-content:center;
   padding: 100px 50px;
   z-index: 99;
 }
-.right div{
-  margin-bottom: 20px;;
+.right div {
+  margin-bottom: 20px;
 }
-.right::after{
-   content:"";
-  position:absolute;
-  right:-60px;
-  top:10%;
+.right::after {
+  content: "";
+  position: absolute;
+  right: -60px;
+  top: 10%;
   width: 60px;
-  height:20px;
-   z-index:1;
-  background-color:#fff;
+  height: 20px;
+  z-index: 1;
+  background-color: #fff;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   box-shadow: 1px 0px 3px #3a3a3a;
 }
-.right::before{
-  content:"";
-  position:absolute;
-  z-index:1;
-  right:-75px;
-  top:20%;
+.right::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  right: -75px;
+  top: 20%;
   width: 75px;
-  height:20px;
-  background-color:#fff;
+  height: 20px;
+  background-color: #fff;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-   box-shadow: 2px 0px 5px #3b3b3b;
+  box-shadow: 2px 0px 5px #3b3b3b;
 }
 .customer-input {
   display: block;
   color: #2a2a2a;
   width: 100%;
-  padding:8px 0;
+  padding: 8px 0;
   border: none;
   font-size: 0.9rem;
   color: #53c8ab;
   border-bottom: 1px solid rgb(153, 153, 153);
   outline: none;
 }
-.login-div::after{
-  content:"";
-  position:absolute;
-  left:-50px;
-  top:40%;
+.login-div::after {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 40%;
   width: 50px;
-  height:20px;
-  background-color:#c9f3e7;
+  height: 20px;
+  background-color: #c9f3e7;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   box-shadow: -1px 0px 3px #3a3a3a;
 }
-.login-div::before{
-  content:"";
-  position:absolute;
-  left:-70px;
-  top:50%;
+.login-div::before {
+  content: "";
+  position: absolute;
+  left: -70px;
+  top: 50%;
   width: 70px;
-  height:20px;
-  background-color:#c9f3e7;
+  height: 20px;
+  background-color: #c9f3e7;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-   box-shadow: 1px 0px 5px #3b3b3b;
+  box-shadow: 1px 0px 5px #3b3b3b;
 }
 </style>
