@@ -22,13 +22,13 @@
 </template>
 
 <script>
-import {login} from "../network/login.js"
+import { login } from "../network/login.js";
 export default {
   name: "login",
   data() {
     return {
-        name: "",
-        password: "",
+      name: "",
+      password: "",
     };
   },
   methods: {
@@ -44,13 +44,26 @@ export default {
           message: "密码都不输入,你是要飞啊！",
         });
       } else {
-        console.log(login)
-            login({
-              username:this.name,
-              password:this.password  
-            }).then((res)=>{
-              console.log(res)
-            })
+        login({
+          username: this.name,
+          password: this.password,
+        }).then((res) => {
+          this.$message({
+            type: "success",
+            message: `🙂😂${res.meta.msg}`,
+            center: true,
+          });
+          if (res.meta.status == 200) {
+            this.$store.state.token = res.data.token;
+            this.$router.push({
+              path: "/home",
+              params: {
+                name: res.data.name,
+              }
+            });
+          }
+          console.log(res);
+        });
       }
     },
   },
