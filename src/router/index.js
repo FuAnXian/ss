@@ -8,7 +8,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    component:index
+    component:login
   },
   {
     path: '/login',
@@ -20,12 +20,21 @@ const routes = [
     name:"home",
     component:home
   }
- 
 ]
 
 const router = new VueRouter({
-  mode:"hash",
+  mode:"history",
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  if(!Vue.token)
+  {
+    next("/login");
+  } else{
+    next();
+  }
+
+  
+})
 export default router

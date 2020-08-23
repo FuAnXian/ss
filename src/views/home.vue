@@ -13,7 +13,7 @@ name:"home",
     }
   },
   created(){
-    //console.log(this.$route.params.name)
+    console.log(this.$route)
   }
 }
 </script>

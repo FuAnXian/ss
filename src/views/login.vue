@@ -55,6 +55,7 @@ export default {
           });
           if (res.meta.status == 200) {
             this.$store.state.token = res.data.token;
+            this.token = res.data.token;
             this.$router.push({
               path: "/home",
               params: {
@@ -62,7 +63,6 @@ export default {
               }
             });
           }
-          console.log(res);
         });
       }
     },
